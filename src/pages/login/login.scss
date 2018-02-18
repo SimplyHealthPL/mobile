@@ -1,0 +1,36 @@
+page-login {
+    .item{
+        margin: 8px auto;
+        margin-bottom: 32px;
+        &.item-input{
+            .item-inner{
+                .input-wrapper{
+                    padding: 0 20px;                 
+                }
+            }
+        }
+        &.item-block{
+            padding: 0px;
+            .item-inner{
+                padding: 0px;
+                .input-wrapper{
+                    .label{
+                        margin: 0px;
+                        .logo{
+                            width: 70%;
+                            margin: 0px auto;
+                            margin-top: 90px;
+                            display: block;
+                            margin-bottom: 30px;
+                            transform: translateX(10px);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .button{
+        margin: 40px auto;
+        display: block;
+    }
+}

@@ -1,0 +1,16 @@
+<ion-menu [content]="content"  *ngIf="permision">
+  <ion-content>
+      <ion-item >
+          <img src="./assets/imgs/logo-menu.png" class="logo-menu">
+      </ion-item>
+    <ion-list>
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" [class.active]="p.active">
+          <span class="redFlag"></span> <img [src]="iconPath + p.icon"> <span>{{p.title}}</span>
+      </button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

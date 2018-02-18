@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Strona główna</ion-title>
+    <img class="headerIcon" [src]="iconPath + icon">
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-spinner *ngIf="loading"></ion-spinner>
+  <h3 [hidden]="loading">Hi {{userData?.name}}</h3>
+</ion-content>

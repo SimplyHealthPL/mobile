@@ -1,0 +1,15 @@
+<ion-content padding>
+  <ion-item>
+    <img src="./assets/imgs/logo.png" class="logo">
+  </ion-item>
+  <ion-item>
+    <ion-input type="text" [(ngModel)]="user.email" placeholder="E-mail"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input type="password" [(ngModel)]="user.password" placeholder="Hasło"></ion-input>
+  </ion-item>
+  <ion-spinner *ngIf="loading"></ion-spinner>
+  <p text-center>{{response}}</p>
+  <button *ngIf="!loading" ion-button (click)="login(user)">Zaloguj</button>
+ </ion-content>
