@@ -1,0 +1,76 @@
+page-shopping-list {
+    ion-list{
+        &-header.item{
+            padding: 0px;
+            margin: 0px;
+            .item-inner{
+                padding: 0px;
+                .input-wrapper{
+                    .label{
+                        color: color($colors, secondary);
+                        font-weight: 100;
+                        font-size: 30px;
+                        text-align: center;
+                        text-transform: capitalize;
+                        span{
+                            padding: 0 30px;
+                        }
+                    }
+                }
+            }
+        }
+        ion-item.item{
+            padding: 0px;
+            border-top: 1px solid #dddada;
+            height: 30px;
+            box-sizing: content-box;
+            &.disabled{
+                background: color($colors, light);
+                .item-inner{
+                    .input-wrapper{
+                        .label{
+                           span.name{
+                            text-decoration: line-through;
+                           }
+                           span.amount, span.unit{
+                               border: 1px solid color($colors, text);
+                           }
+                        }
+                    }
+                }
+            }
+            &:last-of-type{
+                border-bottom: 1px solid #dddada;
+            }
+            .item-inner{
+                padding: 0px;
+                .input-wrapper{
+                    .label{
+                        font-weight: 100;
+                       span.name{
+                        padding-left: 20px;
+                        text-transform: capitalize;
+                        line-height: 25px;
+                       }
+                       span.amount, span.unit{
+                           border: 1px solid color($colors, primary);
+                           padding: 3px 0px;
+                           margin-left: 10px;
+                           width: 60px;
+                           text-align: center;
+                       }
+                       span.amount{
+                        display: block;
+                        
+                        float: right;
+                       }
+                       span.unit{
+                        display: block;
+                        float: right;
+                       }
+                    }
+                }
+            }
+        }
+    }
+}

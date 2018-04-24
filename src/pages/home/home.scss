@@ -1,3 +1,178 @@
 page-home {
+    .content{
+        ion-item{
+            &.mainSlides{
+             //   padding: 0px;
+                height: 220px;
+                margin-top: 10px;
+                .item-inner{
+                    padding: 0px;
+                    .input-wrapper{
+                        ion-label{
+                            height: 100%;
+                            ion-slides{
+                                padding: 0 5%;
+                                .swiper-container{
+                                    ion-slide{
+                                        height: 160px;
+                                        margin: 0 auto;
+                                        border: 1px solid color($colors, text);
+                                        .slide-zoom{
+                                            height: 100%;
+                                        }
+                                        .left{
+                                            display: block;
+                                            width: 50%;
+                                            height: 100%;
+                                            float: left;
+                                            color: color($colors, primary);
+                                            h2{
+                                                font-size: 100px;
+                                                line-height: 70px;
+                                                font-weight: 100;
+                                                margin-top: 25%;
+                                            }
+                                            h3{
+                                                text-transform: uppercase;
+                                                font-size: 25px;
+                                                line-height: 30px;
+                                                font-weight: 100;
+                                                word-wrap: break-word;
+                                            }
+                                        }
+                                        .right{
+                                            display: block;
+                                            width: 50%;
+                                            height: 100%;
+                                            float: left;
+                                            h3{
+                                                margin-top: 25%;
+                                                margin-left: 20px;
+                                                font-size: 25px;
+                                                font-weight: 100;
+                                                text-align: left;
+                                            }
+                                        }
+                                    }
+                                    .swiper-pagination{
+                                        bottom: 0px;
+                                        &-bullet{
+                                            width: 12px;
+                                            height: 12px;
+                                            margin: 0 10px;
+                                            &-active{
+                                                background: color($colors, primary);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &.menuSlides{
+                padding: 0px;
+                height: 320px;
+                margin-bottom: 0px;
+                .item-inner{
+                    padding: 0px;
+                    .input-wrapper{
+                        ion-label{
+                            height: 100%;
+                            ion-slides{
+                                padding: 0%;
+                                .swiper-container{
+                                    ion-slide{
+                                        height: 100%;
+                                        display: block;
+                                        margin: 0 auto;
+                                        ion-list{
+                                            &-header{
+                                                padding: 0px;
+                                                .item-inner{
+                                                    .input-wrapper{
+                                                        .label{
+                                                            color: color($colors, secondary);
+                                                            font-weight: 100;
+                                                            font-size: 30px;
+                                                            text-transform: capitalize;
+                                                            span{
+                                                                padding: 0 30px;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ion-item{
+                                                padding: 0px;
+                                                border-top: 1px solid #dddada;
+                                                height: 50px;
+                                                box-sizing: content-box;
+                                                &:last-of-type{
+                                                    border-bottom: 1px solid #dddada;
+                                                }
+                                                .item-inner{
+                                                    .input-wrapper{
+                                                        .label{
+                                                            p{
+                                                                margin: 0px;
+                                                                padding: 0px 20px;
+                                                                padding-left: 50px;
+                                                                display: block;
+                                                                margin-top: 17px;
+                                                                line-height: 16px;
+                                                                font-size: 16px;
+                                                                font-weight: 100;
+                                                                .time{
 
+                                                                }
+                                                                .name{
+
+                                                                }
+                                                                .dishName{
+                                                                    float: right;
+                                                                    display: inline-block;
+                                                                    max-width: 48%;
+                                                                    text-align: right;
+                                                                }
+                                                            }
+                                                            .mark{
+                                                                width: 26px;
+                                                                height: 26px;
+                                                                margin-top: 12px;
+                                                                display: block;
+                                                                position: absolute;
+                                                                left: 15px;
+                                                                border-radius: 50%;
+                                                                &-0{
+                                                                    background: #fff799;
+                                                                }
+                                                                &-1{
+                                                                    background: #fda88b;
+                                                                }
+                                                                &-2{
+                                                                    background: #a3d39c;
+                                                                }
+                                                                &-3{
+                                                                    background: #6b8d97;
+                                                                }
+                                                                &-4{
+                                                                    background: #9b7f7e;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } 
+    }
 }

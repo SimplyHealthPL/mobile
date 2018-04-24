@@ -8,6 +8,11 @@ import { LoginPage } from '../pages/login/login';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Storage } from '@ionic/storage';
+import { BackgroundMode } from '@ionic-native/background-mode';
+import { LocalNotifications } from '@ionic-native/local-notifications';
+import { DataServiceProvider } from '../providers/data-service/data-service';
+import { ShoppingListPage } from '../pages/shopping-list/shopping-list';
+import { WeightPage } from '../pages/weight/weight';
 
 @Component({
   templateUrl: 'app.html'
@@ -19,13 +24,15 @@ export class Main {
   iconPath: string = './assets/iconsPng/';
   pages: Array<{title: string, component: any, icon: string, active: boolean}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private afAuth: AngularFireAuth,  private storage: Storage) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private afAuth: AngularFireAuth,  private storage: Storage, private backgroundMode: BackgroundMode, private localNot: LocalNotifications, private dataServie: DataServiceProvider) {
     this.initializeApp();
-
+    this.backgroundMode.setDefaults({ silent: true });
+    this.backgroundMode.overrideBackButton();
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Strona główna', component: HomePage, icon: 'home.png',active: true },
-      { title: 'Lista zakupów', component: HomePage, icon: 'list.png',active: false }
+      { title: 'Lista zakupów', component: ShoppingListPage, icon: 'list.png',active: false },
+      { title: 'Waga', component: WeightPage, icon: 'weight.png',active: false }
     ];
 
   }
@@ -34,6 +41,8 @@ export class Main {
     this.afAuth.auth.onAuthStateChanged(userState => {
       if (userState){
         this.permision = true;
+        this.backgroundMode.enable();
+        this.checkUpdates();
       }else{
         this.permision = false;
         this.rootPage = LoginPage;
@@ -66,5 +75,16 @@ export class Main {
     // we wouldn't want the back button to show in this scenario
     this.changeActivePage(page);
     this.nav.setRoot(page.component);
+  }
+
+  checkUpdates(){
+    this.backgroundMode.on('enable').subscribe(() => {
+      this.dataServie.getUserWeekMenu().skip(1).subscribe(() => {
+        this.localNot.schedule({
+          title: 'Nowe Menu!',
+          text: 'Twój dietetyk wprowadził zmiany, sprawdź ;)'
+        });
+      });
+    });
   }
 }

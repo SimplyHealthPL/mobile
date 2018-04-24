@@ -4,11 +4,39 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Strona główna</ion-title>
-    <img class="headerIcon" [src]="iconPath + icon">
+    <img class="headerIcon" [src]="icon">
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-spinner *ngIf="loading"></ion-spinner>
-  <h3 [hidden]="loading">Hi {{userData?.name}}</h3>
+<ion-content>
+    <ion-spinner *ngIf="loading"></ion-spinner>
+    <div [hidden]="loading">
+  <ion-item class="mainSlides" padding>
+    <ion-slides loop pager [spaceBetween]="10" centeredSlides autoplay>
+      <ion-slide *ngFor="let slide of mainSlides">
+        <div class="left">
+          <h2>{{slide.day}}</h2>
+          <h3>{{slide.month}}</h3>
+        </div>
+        <div class="right">
+          <h3 [innerHTML]="slide.info"></h3>
+        </div>
+      </ion-slide>
+    </ion-slides>
+  </ion-item>
+  <ion-item class="menuSlides">
+    <ion-slides centeredSlides>
+        <ion-slide *ngFor="let day of userWeekMenu?.days; let i = index">
+          <ion-list>
+              <ion-list-header>
+                  < <span>{{i | dayOfWeek}}</span> >
+              </ion-list-header>
+              <ion-item *ngFor="let item of day; let j = index" (click)="showDish(item.dishId)">
+                <span [class]="'mark ' + ' mark-' + j"></span><p><span class="time">{{item.time}}</span> <span class="name">{{item.name}}</span> <span class="dishName">{{(item.dishName.length>18)? (item.dishName | slice:0:18)+'...':(item.dishName)}}</span></p>
+              </ion-item>   
+          </ion-list>
+        </ion-slide> 
+    </ion-slides>
+  </ion-item>
+</div>
 </ion-content>

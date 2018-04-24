@@ -1,0 +1,34 @@
+page-weight {
+    canvas{
+        width: 90% !important;
+        margin: 0 auto;
+        height: 300px;
+    }
+    .item.weight{
+        width: 100%;
+        height: 120px;
+        text-align: center;
+        margin: 30px auto;
+        border-top: 1px solid #dddada;
+        border-bottom: 1px solid #dddada;
+        h3{
+            font-weight: 100;
+            font-size: 24px;
+            line-height: 24px;
+            color: color($colors, text);
+            margin-bottom: 5px;
+        }
+        h2{
+            font-weight: 100;
+            font-size: 33px;
+            line-height: 33px;
+            color: color($colors, secondary);
+            margin-bottom: 5px;
+        }
+        h4{
+            color: #969292;
+            font-weight: 100;
+        }
+    }
+
+}

@@ -5,10 +5,16 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { Main } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
+import { DishPage } from '../pages/dish/dish';
+import { ValuePage } from '../pages/value/value';
+import { ShoppingListPage } from '../pages/shopping-list/shopping-list';
+import { WeightPage } from '../pages/weight/weight';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
+import { BackgroundMode } from '@ionic-native/background-mode';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
@@ -16,12 +22,17 @@ import { AngularFireDatabase, AngularFireDatabaseModule } from 'angularfire2/dat
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireAuthModule} from 'angularfire2/auth';
 import { DataServiceProvider } from '../providers/data-service/data-service';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
   declarations: [
     Main,
     HomePage,
-    LoginPage
+    LoginPage,
+    DishPage,
+    ValuePage,
+    ShoppingListPage,
+    WeightPage
   ],
   imports: [
     BrowserModule,
@@ -30,19 +41,26 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFireStorageModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    PipesModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     Main,
     HomePage,
-    LoginPage
+    LoginPage,
+    DishPage,
+    ValuePage,
+    ShoppingListPage,
+    WeightPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     AngularFireDatabase,
     DataServiceProvider,
+    LocalNotifications,
+    BackgroundMode,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

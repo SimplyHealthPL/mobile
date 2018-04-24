@@ -1,0 +1,34 @@
+<!--
+  Generated template for the ValuePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Dodatkowe informacje</ion-title>
+    <img class="headerIcon" [src]="icon">
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <ion-list class="values">
+        <ion-list-header>
+             <h2>Wartości odżywycze</h2>
+        </ion-list-header>
+        <ion-item *ngFor="let item of values">
+          <span class="name">{{item.name}}</span><span class="unit">{{item.unit}}</span><span class="amount">{{item.value}}</span> 
+        </ion-item>   
+    </ion-list>
+    <ion-list>
+        <ion-list-header>
+             <h2>Alergeny</h2>
+        </ion-list-header>
+        <ion-item *ngFor="let item of allergens; let i = index">
+          <span class="name">{{item}}</span>
+        </ion-item>   
+    </ion-list>
+</ion-content>

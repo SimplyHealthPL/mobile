@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from 'angularfire2/auth';
+import 'rxjs/add/operator/take';
+import 'rxjs/add/operator/skip';
 
 /*
   Generated class for the DataServiceProvider provider.
@@ -14,15 +16,17 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class DataServiceProvider {
 
   protected data: any;
-  constructor(private afDB: AngularFireDatabase, private af: AngularFireAuth ) {
+  constructor(private afDB: AngularFireDatabase, private afAuth: AngularFireAuth) {
   }
+
+  // If you need get user data as promise
 
   public load(): Promise<any> {
     if (this.data) {
       return Promise.resolve(this.data);
     }
     return new Promise(resolve => {
-      this.getUser(this.af.auth.currentUser.uid)
+      this.getUserData()
         .subscribe(data => {
           this.data = data;
           resolve(this.data);
@@ -30,18 +34,28 @@ export class DataServiceProvider {
     });
   }
 
-  getUser(uid): Observable<any> {
-    return  this.afDB.list('users', ref => ref.orderByChild('id').equalTo(uid)).valueChanges();
+  getUserData(): Observable<any> {
+    return  this.afDB.list('users', ref => ref.orderByChild('id').equalTo(this.afAuth.auth.currentUser.uid)).valueChanges();
   }
-/*
-  getHotel(hotelId): Observable<any> {
-    return this.afDB.list('hotels', ref => ref.orderByChild('id').equalTo(hotelId)).valueChanges();
+  
+  getUserWeekMenu(): Observable<any> {
+    return  this.afDB.list('menu', ref => ref.orderByChild('userId').equalTo(this.afAuth.auth.currentUser.uid)).valueChanges();
   }
-  getHappenings(eventId): Observable<any> {
-      return this.afDB.list('happenings/' + eventId + '/days', ref => ref.orderByChild('date')).valueChanges();
+
+  getDish(dishID): Observable<any> {
+    return this.afDB.object('dishs/' + dishID).valueChanges().take(1);
   }
-  getTravel(): Observable<any> {
-    return this.afDB.list('travels').valueChanges();
+
+  getElement(elementID): Observable<any> {
+    return this.afDB.object('elements/' + elementID).valueChanges().take(1);
   }
-*/
+
+  getUnit(unitID): Observable<any> {
+    return this.afDB.object('units/' + unitID).valueChanges().take(1);
+  }
+
+  getWithSkip(observ: Observable<any>, skip: number = 1): Observable<any>{
+    return observ.skip(skip);
+  }
+
 }

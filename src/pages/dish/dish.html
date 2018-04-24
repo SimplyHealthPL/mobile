@@ -1,0 +1,45 @@
+<!--
+  Generated template for the DishPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{(dish?.name.length>23)? (dish?.name | slice:0:23)+'...':(dish?.name)}}</ion-title>
+    <img class="headerIcon" [src]="icon">
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+    <ion-spinner *ngIf="loading"></ion-spinner>
+    <div [hidden]="loading">
+        <div class="imgHeader">
+            <img class="info" [src]="info" (click)="showValue()">
+            <img [src]="dish?.image">
+          </div>
+          <div class="portion">
+            <button class="portion__minus" (click)="decrementPortion()">-</button>
+            <span class="portion__text">{{portion}} porcje</span>
+            <button class="portion__plus" (click)="incrementPortion()">+</button>
+          </div>
+          <ion-list class="elements">
+              <ion-list-header>
+                   <h2>Składniki</h2>
+              </ion-list-header>
+              <ion-item *ngFor="let item of elements">
+                <span class="name">{{item.element.name}}</span><span class="unit">{{item.unit.name}}</span><span class="amount">{{item.amount}}</span> 
+              </ion-item>   
+          </ion-list>
+          <ion-list>
+              <ion-list-header>
+                   <h2>Przepis</h2>
+              </ion-list-header> 
+          </ion-list>
+          <div class="recipe" *ngFor="let item of dish?.recipe.steps" margin [innerHTML]="item">
+            
+          </div>
+    </div>
+</ion-content>
