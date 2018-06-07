@@ -13,6 +13,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
 import { DataServiceProvider } from '../providers/data-service/data-service';
 import { ShoppingListPage } from '../pages/shopping-list/shopping-list';
 import { WeightPage } from '../pages/weight/weight';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @Component({
   templateUrl: 'app.html'
@@ -24,10 +25,8 @@ export class Main {
   iconPath: string = './assets/iconsPng/';
   pages: Array<{title: string, component: any, icon: string, active: boolean}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private afAuth: AngularFireAuth,  private storage: Storage, private backgroundMode: BackgroundMode, private localNot: LocalNotifications, private dataServie: DataServiceProvider) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private afAuth: AngularFireAuth,  private storage: Storage, private backgroundMode: BackgroundMode, private localNot: LocalNotifications, private dataServie: DataServiceProvider, private screenOrientation: ScreenOrientation) {
     this.initializeApp();
-    this.backgroundMode.setDefaults({ silent: true });
-    this.backgroundMode.overrideBackButton();
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Strona główna', component: HomePage, icon: 'home.png',active: true },
@@ -55,6 +54,20 @@ export class Main {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+      this.backgroundMode.setDefaults({ silent: true });
+    //  this.backgroundMode.enable();
+      this.platform.registerBackButtonAction(() => { 
+        let activeView: any = this.nav.getActive();
+        if (activeView != null) {
+          if (this.nav.canGoBack()) {
+            this.nav.pop();
+          } else if (this.backgroundMode.isEnabled()) {
+            this.backgroundMode.moveToBackground();
+          }
+        }
+      });
+      
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.checkUser();
