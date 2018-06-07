@@ -15,6 +15,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
 import { BackgroundMode } from '@ionic-native/background-mode';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
@@ -61,6 +62,7 @@ import { PipesModule } from '../pipes/pipes.module';
     DataServiceProvider,
     LocalNotifications,
     BackgroundMode,
+    ScreenOrientation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
